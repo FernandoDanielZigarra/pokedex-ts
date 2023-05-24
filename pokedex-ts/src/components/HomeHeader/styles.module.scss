@@ -1,0 +1,39 @@
+header{
+        padding: 2rem 0;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        margin: 0 auto;
+        gap: 3rem;
+        
+        div{
+            width: max-content;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        span{
+            color: #212121;
+            font-size: 24px;
+            font-weight:700;
+        }
+        svg{
+            width: 24px;
+            
+        }
+        @media (max-width:600px){
+            flex-direction: column;
+        }
+}
+
+
+.inpSearch{
+    padding: .3rem .8rem;
+    border-style: double ;
+    border-width: 5px;
+}
