@@ -10,14 +10,19 @@ interface MyComponentProps {
 }
 
 interface ContextProps {
-  searchPokemon: (pokemons: IPokemons, value: string) => void;
+  /* searchPokemon: (pokemons: IPokemons, value: string) => void; */
   setSearch: any;
   search: string;
   allPokemons: any[];
-  setResultSearch: any[];
-  resultSearch: any[];
+  resultSearchNames: any[];
+  setResultSearchNames: any[];
+  resultSearchAbility: any[];
+  setResultSearchAbility: any[];
   edit: boolean;
   setEdit: any;
+  allAbilities:any[];
+  searchForName:any[];
+  searchForAbility:any[];
 }
 
 export const PokemonContext = createContext<ContextProps>({} as ContextProps);
@@ -26,48 +31,30 @@ const PokemonProvider = ({ children }: MyComponentProps) => {
   const allPokemonsUrl =
     "https://pokeapi.co/api/v2/pokemon?limit=1000&offset=0";
 
+  const AllAbilitiesUrl = "https://pokeapi.co/api/v2/ability?limit=1000&offset=0"
+
   const [allPokemons, setAllPokemons] = useState([]);
+  const [allAbilities, setAllAbilities] = useState([])
+  
   const [search, setSearch] = useState("");
-  const [resultSearch, setResultSearch] = useState();
+  
+  const [resultSearchNames, setResultSearchNames] = useState();
+  const [resultSearchAbility, setResultSearchAbility] = useState();
 
   const [edit, setEdit] = useState(false);
 
-  /* const searchForName = async (pokemons: any, search: string) => {
+  const searchForName = (pokemons: any, search: string) => {
     const result = pokemons?.filter((pokemon: any) =>
       pokemon.name.includes(search)
     );
     return result;
-  }; */
+  };
 
-  /*  const searchForAbility = async (search: string) => {
-    try {
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-      const result = await axios.get(
-        `https://pokeapi.co/api/v2/ability/${search.toLowerCase()}`,
-        config
-      );
-      if (result.status !== 200) {
-        return null;
-      }
-      return result;
-    } catch (error) {
-      console.log(error);
-    }
-  }; */
-
-  const searchPokemon = (pokemons: any, search: string) => {
-    try {
-      const result = pokemons?.filter((pokemon: any) =>
-        pokemon.name.includes(search)
-      );
-      return result;
-    } catch (error) {
-      console.log(error);
-    }
+   const searchForAbility = (abilities: any, search: string) => {
+    const result = abilities?.filter((ability: any) =>
+    ability.name.includes(search)
+    );
+    return result;
   };
 
   const getAllPokemonsFull = async () => {
@@ -78,18 +65,32 @@ const PokemonProvider = ({ children }: MyComponentProps) => {
   useEffect(() => {
     getAllPokemonsFull();
   }, []);
+  const getAllAbilitiesFull = async () => {
+    const { data } = await axios.get(AllAbilitiesUrl);
+    const abilities = data.results.map((pokemon: any) => pokemon);
+    setAllAbilities(abilities);
+  };
+  useEffect(() => {
+    getAllPokemonsFull();
+    getAllAbilitiesFull()
+  }, []);
 
   return (
     <PokemonContext.Provider
       value={{
-        searchPokemon,
+        
         setSearch,
         search,
         allPokemons,
-        setResultSearch,
-        resultSearch,
+        allAbilities,
+        resultSearchNames,
+        setResultSearchNames,
+        resultSearchAbility,
+        setResultSearchAbility,
         edit,
         setEdit,
+        searchForName,
+        searchForAbility
       }}
     >
       {children}

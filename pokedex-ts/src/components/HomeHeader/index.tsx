@@ -9,10 +9,13 @@ import styles from "./styles.module.scss";
 export const HomeHeader = () => {
   const {
     setSearch,
-    searchPokemon,
+    searchForAbility,
+    setResultSearchAbility,
+    searchForName,
+    setResultSearchNames,
     search,
     allPokemons,
-    setResultSearch,
+    allAbilities,
     edit,
     setEdit,
   } = useContext(PokemonContext);
@@ -26,11 +29,19 @@ export const HomeHeader = () => {
   };
 
   const handleSearch = () => {
-    
-    const response = searchPokemon(allPokemons, search);
-    const result = response.map((pokemon: any) => pokemon.url);
-    setResultSearch(result);
-    navigate("/search");
+    try {
+      const responseAbility = searchForAbility(allAbilities, search);
+      const resultAbility = responseAbility.map((ability: any) => ability.url);
+
+      const responseName = searchForName(allPokemons, search);
+      const resultName = responseName.map((pokemon: any) => pokemon.url);
+
+      setResultSearchAbility(responseName);
+      setResultSearchNames(resultName);
+      navigate("/search");
+    } catch (error) {
+      console.log(error)
+    }
   };
   return (
     <header className={styles.container}>
