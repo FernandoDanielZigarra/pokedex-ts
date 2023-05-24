@@ -33,7 +33,7 @@ export const HomeHeader = () => {
     navigate("/search");
   };
   return (
-    <header>
+    <header className={styles.container}>
       <div onClick={backToHome}>
         <PokeballIconSmall />
         <span>Pokédex</span>

@@ -13,7 +13,7 @@ export const Header = ({pokemon}:Props) => {
   const navigate = useNavigate()
 
   return (
-    <header>
+    <header className={styles.container}>
       <PokeballIconBig className={styles.pokeball} />
       <div className={styles.left}>
         <ArrowLeftIcon onClick={() => navigate(-1)} />

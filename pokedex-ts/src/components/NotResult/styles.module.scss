@@ -1,0 +1,14 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: url(https://videohive.img.customer.envatousercontent.com/files/229062857/FOREST-CAMPFIRE-Preview.jpg?auto=compress%2Cformat&fit=crop&crop=top&max-h=8000&max-w=590&s=06fc24e427c12d57e1a7b01aa6ac7873);
+    background-attachment: fixed;
+    background-size: contain;
+    background-repeat: no-repeat;
+    span{
+        font-size: 1.5rem;
+        color: white;
+    }
+}
