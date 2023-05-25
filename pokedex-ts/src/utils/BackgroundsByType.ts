@@ -24,30 +24,6 @@ interface typesBackground {
   [key: string]: string;
 }
 
-/* type typesBackground2 = {
-  normal: string;
-  fighting: string;
-  flying: string;
-  ground: string;
-  poison: string;
-  rock: string;
-  bug: string;
-  ghost: string;
-  steel: string;
-  fire: string;
-  water: string;
-  grass: string;
-  electric: string;
-  psychic: string;
-  ice: string;
-  dragon: string;
-  dark: string;
-  fairy: string;
-  unknown: string;
-  shadow: string;
-  All: string;
-}; */
-
 export const background: typesBackground= {
   normal: "#AAA67F",
   fighting: "#C12239",
@@ -69,5 +45,4 @@ export const background: typesBackground= {
   fairy: "#E69EAC",
   unknown: "#526677",
   shadow: "#4F507B",
-  All: "All",
 };

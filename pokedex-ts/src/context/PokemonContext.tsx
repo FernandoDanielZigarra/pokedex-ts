@@ -11,13 +11,7 @@ interface MyComponentProps {
 
 interface ContextProps {
   /* searchPokemon: (pokemons: IPokemons, value: string) => void; */
-  setSearch: any;
-  search: string;
   allPokemons: any[];
-  resultSearchNames: any[];
-  setResultSearchNames: any[];
-  resultSearchAbility: any[];
-  setResultSearchAbility: any[];
   edit: boolean;
   setEdit: any;
   allAbilities:any[];
@@ -62,14 +56,13 @@ const PokemonProvider = ({ children }: MyComponentProps) => {
     const pokemons = data.results.map((pokemon: any) => pokemon);
     setAllPokemons(pokemons);
   };
-  useEffect(() => {
-    getAllPokemonsFull();
-  }, []);
+
   const getAllAbilitiesFull = async () => {
     const { data } = await axios.get(AllAbilitiesUrl);
     const abilities = data.results.map((pokemon: any) => pokemon);
     setAllAbilities(abilities);
   };
+
   useEffect(() => {
     getAllPokemonsFull();
     getAllAbilitiesFull()
@@ -78,19 +71,12 @@ const PokemonProvider = ({ children }: MyComponentProps) => {
   return (
     <PokemonContext.Provider
       value={{
-        
-        setSearch,
-        search,
         allPokemons,
         allAbilities,
-        resultSearchNames,
-        setResultSearchNames,
-        resultSearchAbility,
-        setResultSearchAbility,
         edit,
         setEdit,
-        searchForName,
-        searchForAbility
+        searchForAbility,
+        searchForName
       }}
     >
       {children}

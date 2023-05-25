@@ -1,14 +1,19 @@
-import { useContext } from "react";
-import { PokemonContext } from "../../context/PokemonContext";
+/* import { useContext } from "react";
+import { PokemonContext } from "../../context/PokemonContext"; */
 
+import { useParams } from 'react-router-dom';
 import styles from './styles.module.scss'
 
-export const NotResult = () => {
-  const { search } = useContext(PokemonContext);
+interface Props {
+  msj: string;
+}
+
+export const NotResult = ({msj}:Props) => {
+  const {query} = useParams()
   return (
     <div className={styles.container}>
       <img src="https://i.gifer.com/8fCz.gif" alt="charmander-chill" />
-      <span>No se han encontrado resultados de la busqueda: {search}</span>
+      <span>{msj}{query}</span>
     </div>
   );
 };

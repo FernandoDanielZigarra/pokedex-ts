@@ -2,10 +2,10 @@ import { usePokemon } from "../../hooks/usePokemon";
 import { background } from "../../utils/BackgroundsByType";
 import { Link } from "react-router-dom";
 import { Loader } from "../Loader";
-
-import styles from "./styles.module.scss";
 import { useContext } from "react";
 import { PokemonContext } from "../../context/PokemonContext";
+
+import styles from "./styles.module.scss";
 
 interface Props {
   url: string;

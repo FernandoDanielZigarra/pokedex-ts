@@ -15,7 +15,7 @@ const router = createBrowserRouter([
     element: <PokeDetail />,
   },
   {
-    path: "/search",
+    path: "/search/:query",
     element: <SearchPage />
   }
 ]);
