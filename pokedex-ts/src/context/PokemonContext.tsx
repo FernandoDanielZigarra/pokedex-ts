@@ -15,8 +15,8 @@ interface ContextProps {
   edit: boolean;
   setEdit: any;
   allAbilities:any[];
-  searchForName:any[];
-  searchForAbility:any[];
+  searchForName:(pokemons:IPokemons,value: string) => void;
+  searchForAbility:any;
 }
 
 export const PokemonContext = createContext<ContextProps>({} as ContextProps);
@@ -30,11 +30,8 @@ const PokemonProvider = ({ children }: MyComponentProps) => {
   const [allPokemons, setAllPokemons] = useState([]);
   const [allAbilities, setAllAbilities] = useState([])
   
-  const [search, setSearch] = useState("");
+  /* const [search, setSearch] = useState(""); */
   
-  const [resultSearchNames, setResultSearchNames] = useState();
-  const [resultSearchAbility, setResultSearchAbility] = useState();
-
   const [edit, setEdit] = useState(false);
 
   const searchForName = (pokemons: any, search: string) => {

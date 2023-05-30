@@ -7,6 +7,7 @@ import { NotResult } from "../../components/NotResult";
 import { useParams } from "react-router-dom";
 import { AbilitiesList } from "../../components/AbilitiesList";
 
+
 export const SearchPage = () => {
   const { allPokemons, allAbilities, searchForAbility, searchForName } =
     useContext(PokemonContext);
@@ -20,13 +21,11 @@ export const SearchPage = () => {
 
   const handleSearch = () => {
     const resultAbility = searchForAbility(allAbilities, query);
-    const resultAbilities = resultAbility.map(
-      (ability:any) => ability
-    );
+    console.log(resultAbility)
     const resultName = searchForName(allPokemons, query);
     const nameResultUrls = resultName.map((pokemon: any) => pokemon.url);
     setResultName(nameResultUrls);
-    setResultAbility(resultAbilities);
+    setResultAbility(resultAbility);
   };
 
   useEffect(() => {
@@ -54,8 +53,13 @@ export const SearchPage = () => {
         resultAbility.length !== 0 ? (
           <>
           <h2 style={{textAlign:"center"}}>Abilities Result</h2>
-        <AbilitiesList resultAbility={resultAbility} />
-        </>
+          {
+            resultAbility.map((ability:any) => (
+              <AbilitiesList resultAbility={resultAbility} />
+            ))
+          }
+          </>
+        
         ) : (<NotResult msj='No se ha encontrado resultado de la habilidad ' />)
       }
       
